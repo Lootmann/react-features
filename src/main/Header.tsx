@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { UserContext } from "./UserContext";
+import { UserContext } from "../contexts/UserContext";
 
 export function Header() {
   return (
@@ -12,8 +12,8 @@ export function Header() {
         PluginTest
       </Link>
 
-      <Link to={`/`} className="bg-slate-700 px-2 rounded-md">
-        App
+      <Link to={`/context`} className="bg-slate-700 px-2 rounded-md">
+        ContextTest
       </Link>
     </div>
   );

@@ -1,4 +1,3 @@
-import { createContext, useContext, useState } from "react";
 import { Header } from "./Header";
 import { MainContent } from "./MainContent";
 import { UserContext } from "./UserContext";

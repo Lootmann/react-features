@@ -18,6 +18,20 @@ export function Header() {
       >
         ContextTest
       </Link>
+
+      <Link
+        to={`/loader/user`}
+        className="text-2xl bg-slate-700 hover:bg-slate-900 px-2 rounded-md transition-all duration-200"
+      >
+        LoadetTest - User
+      </Link>
+
+      <Link
+        to={`/loader/user_filter`}
+        className="text-2xl bg-slate-700 hover:bg-slate-900 px-2 rounded-md transition-all duration-200"
+      >
+        LoadetTest - User filter by name
+      </Link>
     </div>
   );
 }

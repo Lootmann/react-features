@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { AllUsers } from "./AllUsers";
 import { create_user } from "../api/user";
-import { useLoaderData } from "react-router-dom";
 
 // TODO: use by '/user' and '/user_filter'
 export function Users() {
-  const users = useLoaderData() as UserType[];
+  const [reload, setReload] = useState<boolean>(false);
 
   function onSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     create_user();
+    setReload(!reload);
   }
+
+  useEffect(() => {}, []);
 
   return (
     <div className="flex flex-col gap-4 border p-4 rounded-md">
@@ -17,14 +20,6 @@ export function Users() {
 
       <div className="border p-4 rounded-md text-2xl">
         <ul>
-          {users.map((user) => {
-            return (
-              <li key={user.user_id}>
-                {user.user_id}. {user.name} ({user.email})
-              </li>
-            );
-          })}
-
           <li className="mt-2">
             <button
               type="submit"
@@ -34,6 +29,8 @@ export function Users() {
               + Create
             </button>
           </li>
+
+          <AllUsers />
         </ul>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { all_user, all_user_filter_by_name } from "./api/user";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Index } from "./main/Index";
 import { Index as ContextIndex } from "./contexts/Index";
@@ -23,10 +24,12 @@ const router = createBrowserRouter([
           {
             path: "/loader/user",
             element: <Users />,
+            loader: all_user,
           },
           {
             path: "/loader/user_filter",
             element: <Users />,
+            loader: all_user_filter_by_name,
           },
         ],
       },

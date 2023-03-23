@@ -4,7 +4,11 @@ import { MainContent } from "./MainContent";
 import { UserContext } from "./UserContext";
 
 export function Index() {
-  const user = { name: "hoge", email: "hogehoge@gmail.com" };
+  const user: UserType = {
+    user_id: 1,
+    name: "hoge",
+    email: "hogehoge@gmail.com",
+  };
 
   return (
     <div className="flex flex-col gap-6 bg-slate-900 p-4">

@@ -6,6 +6,7 @@ import { getAllUser, getAllUserFilteredByName } from "./api/user";
 import { Index } from "./main/Index";
 import { Index as ContextIndex } from "./contexts/Index";
 import { Index as LoaderIndex } from "./loaders/Index";
+import { UserDetail } from "./loaders/UserDetail";
 import { Users } from "./loaders/Users";
 import "./styles/index.css";
 
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
             path: "/loader/user_filter",
             element: <Users />,
             loader: getAllUserFilteredByName,
+          },
+          {
+            path: "/loader/user/:userId",
+            element: <UserDetail />,
           },
         ],
       },

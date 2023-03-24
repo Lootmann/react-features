@@ -15,6 +15,12 @@ export const getAllUserFilteredByName = async () => {
   });
 };
 
+export const getUserById = async (userId: number) => {
+  return await axios.get(API_URL + `/users/${userId}`).then((resp) => {
+    if (resp.status == 200) return resp.data;
+  });
+};
+
 export const createUser = async (formData: UserFormType): Promise<void> => {
   const users = await getAllUser();
   const latestId = users.sort()[users.length - 1].id;

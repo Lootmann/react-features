@@ -4,13 +4,13 @@ import { fake_db } from "../db/fake_db";
 const API_URL = "http://localhost:8888";
 
 // for loader
-export const all_user = async () => {
+export const getAllUser = async () => {
   return await axios.get(API_URL + "/users").then((resp) => {
     if (resp.status == 200) return resp.data;
   });
 };
 
-export const all_user_filter_by_name = async () => {
+export const getAllUserFilteredByName = async () => {
   return await axios.get(API_URL + "/users").then((resp) => {
     if (resp.status == 200) return resp.data;
   });
@@ -27,9 +27,8 @@ const random_string = (size: number): string => {
   return res.join("");
 };
 
-export const create_user = async (): Promise<void> => {
-  const users = await all_user();
-  console.log(users);
+export const createUser = async (): Promise<void> => {
+  const users = await getAllUser();
   const latestId = users.sort()[users.length - 1].id;
 
   const user: UserType = {

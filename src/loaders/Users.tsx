@@ -1,21 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { AllUsers } from "./AllUsers";
-import { create_user } from "../api/user";
+import { createUser } from "../api/user";
+import { Form, redirect } from "react-router-dom";
 
 export function Users() {
-  const [reload, setReload] = useState<boolean>(false);
-
-  function onSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    e.preventDefault();
-    create_user();
-
-    // TODO: The component below should have reloaded,
-    // TODO: but the display of the AllUsers component does not change
-    setReload(!reload);
-  }
-
-  useEffect(() => {}, [reload]);
-
   return (
     <div className="flex flex-col gap-4 border p-4 rounded-md">
       <h2>LoaderTest - User</h2>
@@ -23,13 +11,13 @@ export function Users() {
       <div className="border p-4 rounded-md text-2xl">
         <ul>
           <li className="mt-2">
-            <button
-              type="submit"
-              className="hover:bg-slate-500 px-2 rounded-md"
-              onClick={(e) => onSubmit(e)}
-            >
-              + Create
-            </button>
+            <Form method="post">
+              <input
+                type="submit"
+                value="+ Create"
+                className="hover:bg-slate-500 px-2 rounded-md"
+              />
+            </Form>
           </li>
 
           <AllUsers />
@@ -37,4 +25,10 @@ export function Users() {
       </div>
     </div>
   );
+}
+
+export async function createUserAction({ request }: any) {
+  // TODO: get form data using 'request.formData'
+  await createUser();
+  return redirect("/loader/user");
 }

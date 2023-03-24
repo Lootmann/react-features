@@ -45,7 +45,9 @@ export async function createUserAction({ request }: any) {
     email: formData.get("email"),
   };
 
-  const errors: UserFormType = {};
+  // TODO: how to set correct type hint?
+  const errors: UserFormType = { name: "", email: "" };
+
   if (typeof user.name !== "string" || user.name.length < 3) {
     errors.name = "name should be longer than 5";
   }
@@ -54,7 +56,8 @@ export async function createUserAction({ request }: any) {
     errors.email = "Invalid Email";
   }
 
-  if (Object.keys(errors).length) {
+  // TODO: how to check if the errors variable is empty
+  if (user.name.length > 0 || user.email.length > 0) {
     return errors;
   }
 

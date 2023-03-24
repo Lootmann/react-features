@@ -1,5 +1,4 @@
 import axios from "axios";
-import { fake_db } from "../db/fake_db";
 
 const API_URL = "http://localhost:8888";
 

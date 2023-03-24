@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import { AllUsers } from "./AllUsers";
 import { create_user } from "../api/user";
 
-// TODO: use by '/user' and '/user_filter'
 export function Users() {
   const [reload, setReload] = useState<boolean>(false);
 
   function onSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     create_user();
+
+    // TODO: The component below should have reloaded,
+    // TODO: but the display of the AllUsers component does not change
     setReload(!reload);
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => {}, [reload]);
 
   return (
     <div className="flex flex-col gap-4 border p-4 rounded-md">

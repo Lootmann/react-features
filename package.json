@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "server": "json-server --no-cors --watch db.json --port 8888"
+    "server": "json-server --no-cors --watch ./db/db.json --port 8888"
   },
   "dependencies": {
     "autoprefixer": "^10.4.14",

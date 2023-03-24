@@ -1,17 +1,17 @@
 {
   "users": [
     {
-      "userId": 1,
+      "id": 1,
       "name": "hoge",
       "email": "hoge@gmail.com"
     },
     {
-      "userId": 2,
+      "id": 2,
       "name": "hige",
       "email": "hige@gmail.com"
     },
     {
-      "userId": 3,
+      "id": 3,
       "name": "hage",
       "email": "hage@gmail.com"
     }

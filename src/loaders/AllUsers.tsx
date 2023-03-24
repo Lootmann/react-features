@@ -5,7 +5,7 @@ export function AllUsers() {
   const data = useLoaderData() as UserType[];
 
   return (
-    <>
+    <ul>
       {data.map((user) => {
         return (
           <li key={user.id}>
@@ -13,6 +13,8 @@ export function AllUsers() {
           </li>
         );
       })}
-    </>
+    </ul>
   );
 }
+
+// TODO: delete user using Action D:

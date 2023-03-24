@@ -3,3 +3,8 @@ type UserType = {
   name: string;
   email: string;
 };
+
+type UserFormType = {
+  name: string;
+  email: string;
+};

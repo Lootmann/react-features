@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { createUserAction, Users } from "./loaders/Users";
+import { createUserAction } from "./loaders/FormCreateUser";
+import { getAllUser, getAllUserFilteredByName } from "./api/user";
 import { Index } from "./main/Index";
 import { Index as ContextIndex } from "./contexts/Index";
 import { Index as LoaderIndex } from "./loaders/Index";
+import { Users } from "./loaders/Users";
 import "./styles/index.css";
-import { getAllUser, getAllUserFilteredByName } from "./api/user";
 
 const router = createBrowserRouter([
   {

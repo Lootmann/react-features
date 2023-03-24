@@ -16,25 +16,14 @@ export const getAllUserFilteredByName = async () => {
   });
 };
 
-const random_string = (size: number): string => {
-  const str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const res: Array<string> = [];
-
-  for (let i = 0; i < size; i++) {
-    res.push(str[Math.floor(Math.random() * str.length)]);
-  }
-
-  return res.join("");
-};
-
-export const createUser = async (): Promise<void> => {
+export const createUser = async (formData: UserFormType): Promise<void> => {
   const users = await getAllUser();
   const latestId = users.sort()[users.length - 1].id;
 
   const user: UserType = {
     id: Number(latestId) + 1,
-    name: random_string(5),
-    email: `${random_string(5)}@email.com`,
+    name: formData.name,
+    email: formData.email,
   };
 
   const resp = await axios.post(API_URL + "/users", user);

@@ -29,6 +29,7 @@ export const createUser = async (formData: UserFormType): Promise<void> => {
     id: Number(latestId) + 1,
     name: formData.name,
     email: formData.email,
+    password: formData.password,
   };
 
   const resp = await axios.post(API_URL + "/users", user);

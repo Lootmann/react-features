@@ -15,6 +15,7 @@ export function FormCreateUser() {
         name="name"
         id="name"
         autoComplete="off"
+        placeholder="name"
         className="bg-slate-700 text-slate-200 pl-2 rounded-md"
       />
       {errors?.name && <span className="text-red-600">{errors?.name}</span>}
@@ -24,6 +25,7 @@ export function FormCreateUser() {
         name="email"
         id="email"
         autoComplete="off"
+        placeholder="email"
         className="bg-slate-700 text-slate-200 pl-2 rounded-md"
       />
       {errors?.email && <span className="text-red-600">{errors?.email}</span>}
@@ -33,6 +35,7 @@ export function FormCreateUser() {
         name="password"
         id="password"
         autoComplete="off"
+        placeholder="password"
         className="bg-slate-700 text-slate-200 pl-2 rounded-md"
       />
       {errors?.password && (
@@ -69,14 +72,14 @@ export async function createUserAction({ request }: any) {
   }
 
   if (typeof user.password !== "string" || user.password.length < 3) {
-    errors.email = "Invalid Password";
+    errors.password = "Invalid Password";
   }
 
   // TODO: how to check if the errors variable is empty
   if (
-    user.name.length > 0 ||
-    user.email.length > 0 ||
-    user.password.length > 0
+    errors.name.length > 0 ||
+    errors.email.length > 0 ||
+    errors.password.length > 0
   ) {
     return errors;
   }

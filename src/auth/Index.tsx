@@ -1,6 +1,5 @@
 import React from "react";
 import { AuthenticatedGuard } from "./AuthenticatedGuard";
-import { Header } from "../main/Header";
 import { Link, Outlet } from "react-router-dom";
 
 export function AuthIndex() {

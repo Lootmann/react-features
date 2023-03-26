@@ -7,16 +7,30 @@ export function useAuth(): AuthType {
 }
 
 export async function loginUser(user: UserFormType): Promise<void> {
-  console.log(">>> loginUser");
   const found = await axios
     .get(API_URL + `/users?name=${user.name}&password=${user.password}`)
     .then((resp) => {
       return resp.data;
     });
 
-  if (found) localStorage.setItem(LOCALSTORAGE_KEY, "loggedin");
+  // TODO: security incidents D:
+  if (found) localStorage.setItem(LOCALSTORAGE_KEY, user.name);
 }
 
 export async function logoutUser(): Promise<void> {
   localStorage.removeItem(LOCALSTORAGE_KEY);
+}
+
+export async function getLoggedinUser(): Promise<UserType | null> {
+  const token = localStorage.getItem(LOCALSTORAGE_KEY);
+
+  const found = await axios
+    .get(API_URL + `/users?name=${token}`)
+    .then((resp) => {
+      return resp.data[0];
+    })
+    .catch((error) => {
+      return null;
+    });
+  return found;
 }

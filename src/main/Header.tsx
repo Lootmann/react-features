@@ -11,6 +11,13 @@ export function Header() {
       </Link>
 
       <Link
+        to={`/auth`}
+        className="text-2xl bg-slate-700 hover:bg-slate-900 px-2 rounded-md transition-all duration-200"
+      >
+        AuthContext
+      </Link>
+
+      <Link
         to={`/context`}
         className="text-2xl bg-slate-700 hover:bg-slate-900 px-2 rounded-md transition-all duration-200"
       >

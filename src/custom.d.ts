@@ -10,3 +10,7 @@ type UserFormType = {
   email: string;
   password: string;
 };
+
+type AuthType = {
+  isAuthenticated: boolean;
+};

@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const API_URL = "http://localhost:8888";
+import { API_URL } from "../settings";
 
 // for loader
 export const getAllUser = async () => {

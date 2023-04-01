@@ -11,6 +11,10 @@ type UserFormType = {
   password: string;
 };
 
+type UserErrorFormType = UserFormType & {
+  message: string;
+};
+
 type AuthType = {
   isAuthenticated: boolean;
 };

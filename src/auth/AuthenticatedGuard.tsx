@@ -10,7 +10,6 @@ export function AuthenticatedGuard({ children }: any) {
   const [user, setUser] = useState<UserType | null>(null);
 
   useEffect(() => {
-    // TODO: make it prettier
     const loggedInUser = async () => {
       const u = await getLoggedinUser();
       if (u) setUser(u);

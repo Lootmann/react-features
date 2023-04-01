@@ -1,11 +1,18 @@
-import React from "react";
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, useActionData } from "react-router-dom";
 import { loginUser } from "../api/auth";
 
 export function Login() {
+  const errors = useActionData() as UserErrorFormType;
+
   return (
-    // TODO: validation
-    <Form method="post" className="w-1/3 flex flex-col gap-4 border p-4">
+    <Form
+      method="post"
+      className="w-1/3 flex flex-col gap-4 border p-4 text-slate-700"
+    >
+      {errors?.message && (
+        <span className="text-red-500">{errors.message}</span>
+      )}
+
       <input
         type="text"
         name="name"
@@ -13,6 +20,8 @@ export function Login() {
         placeholder="name"
         className="px-2 rounded-md"
       />
+      {errors?.name && <span className="text-red-500">{errors.name}</span>}
+
       <input
         type="text"
         name="email"
@@ -20,6 +29,8 @@ export function Login() {
         placeholder="email"
         className="px-2 rounded-md"
       />
+      {errors?.email && <span className="text-red-500">{errors.email}</span>}
+
       <input
         type="text"
         name="password"
@@ -27,6 +38,10 @@ export function Login() {
         placeholder="password"
         className="px-2 rounded-md"
       />
+      {errors?.password && (
+        <span className="text-red-500">{errors.password}</span>
+      )}
+
       <input
         type="submit"
         value="Login"
@@ -36,7 +51,6 @@ export function Login() {
   );
 }
 
-// TODO: Login Action
 export async function authLoginAction({ request }: any) {
   const formData = await request.formData();
 
@@ -46,7 +60,12 @@ export async function authLoginAction({ request }: any) {
     password: formData.get("password"),
   };
 
-  const errors: UserFormType = { name: "", email: "", password: "" };
+  const errors: UserErrorFormType = {
+    name: "",
+    email: "",
+    password: "",
+    message: "",
+  };
 
   if (
     errors.name.length > 0 ||
@@ -56,6 +75,12 @@ export async function authLoginAction({ request }: any) {
     return errors;
   }
 
-  await loginUser(user);
-  return redirect("/auth");
+  const found = await loginUser(user);
+
+  if (!found) {
+    errors.message = "Login Error";
+    return errors;
+  } else {
+    return redirect("/auth");
+  }
 }

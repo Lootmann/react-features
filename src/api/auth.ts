@@ -1,9 +1,10 @@
+import Cookies from "js-cookie";
 import { axiosApi } from "./axios";
 import { LOCALSTORAGE_KEY } from "../settings";
 
 export function useAuth(): AuthType {
-  const key = localStorage.getItem(LOCALSTORAGE_KEY);
-  return { isAuthenticated: key != null };
+  const token = Cookies.get(LOCALSTORAGE_KEY);
+  return { isAuthenticated: token != null };
 }
 
 export async function loginUser(user: UserFormType): Promise<boolean> {
@@ -18,7 +19,7 @@ export async function loginUser(user: UserFormType): Promise<boolean> {
     });
 
   if (found) {
-    localStorage.setItem(LOCALSTORAGE_KEY, user.name);
+    Cookies.set(LOCALSTORAGE_KEY, user.name);
     return true;
   } else {
     return false;
@@ -26,11 +27,12 @@ export async function loginUser(user: UserFormType): Promise<boolean> {
 }
 
 export async function logoutUser(): Promise<void> {
-  localStorage.removeItem(LOCALSTORAGE_KEY);
+  Cookies.remove(LOCALSTORAGE_KEY);
 }
 
 export async function getLoggedinUser(): Promise<UserType | null> {
-  const token = localStorage.getItem(LOCALSTORAGE_KEY);
+  const token = Cookies.get(LOCALSTORAGE_KEY);
+  if (!token) return null;
 
   const found = await axiosApi
     .get(`/users?name=${token}`)

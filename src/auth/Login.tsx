@@ -19,6 +19,7 @@ export function Login() {
         id="name"
         placeholder="name"
         className="px-2 rounded-md"
+        autoFocus
       />
       {errors?.name && <span className="text-red-500">{errors.name}</span>}
 

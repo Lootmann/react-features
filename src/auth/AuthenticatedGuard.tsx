@@ -1,7 +1,7 @@
-import { getLoggedinUser, useAuth } from "../api/auth";
+import { getLoggedinUser, logoutUser, useAuth } from "../api/auth";
 import { Profile } from "./Profile";
+import { redirect, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { UserContext } from "./UserContext";
 
 export function AuthenticatedGuard({ children }: any) {
@@ -13,14 +13,21 @@ export function AuthenticatedGuard({ children }: any) {
     const loggedInUser = async () => {
       const u = await getLoggedinUser();
       if (u) setUser(u);
+      else {
+        await logoutUser();
+        return redirect("/auth");
+      }
     };
     loggedInUser();
   }, []);
 
   return isAuthenticated ? (
     <>
-      <div>You're logged in D:</div>
-      <div>{children}</div>
+      <div className="bg-slate-900 px-2 rounded-md">
+        <p>You're logged in D:</p>
+        <p>{children}</p>
+      </div>
+
       <UserContext.Provider value={user}>
         <Profile />
       </UserContext.Provider>
